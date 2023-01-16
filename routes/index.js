@@ -1,17 +1,11 @@
 const express = require('express');
 
 //import routers for /notes
-const notesRouter = require('./notes');
+const apiRouter = require('./api')
 
 const app = express();
 
-app.use('/notes', notesRouter);
-
-app.get('*', (req, res) => {
-    console.info(`Invalid request received`);
-    console.info(req.body);
-
-    res.sendFile('./public/index.html');
-})
+//Set routers
+app.use('/api', apiRouter);
 
 module.exports = app;
