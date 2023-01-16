@@ -12,10 +12,11 @@ api.post('/notes', (req, res) => {
     console.info(`${req.method} request received to add a note.`);
     console.info(req.body);
 
-    const { text, title } = req.body;
+    const { title, text } = req.body;
 
-    if (!title || !text) {
+    if (title && text) {
         const newNote = {
+            note_id: uuid(),
             title,
             text
         };
@@ -23,7 +24,8 @@ api.post('/notes', (req, res) => {
         readAndAppend(newNote, './db/db.json');
         res.json('Note added successfully');
     } else {
-        res.error('Error adding new note');
+
+        res.json('Error adding new note');
     }
 })
 

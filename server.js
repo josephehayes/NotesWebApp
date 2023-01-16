@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const routes = require('./routes/index.js');
+const routes = require('./routes/api.js');
 
 const PORT = 3001;
 
@@ -12,6 +12,7 @@ app.use('/api', routes);
 
 app.use(express.static('public'));
 
+// Serves notes page with saved notes
 app.get('/notes', (req, res) => {
     console.info(`${req.method} request received for /notes.`);
     res.sendFile(path.join(__dirname, './public/notes.html'));
